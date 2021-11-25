@@ -1,0 +1,19 @@
+version: '3.9'
+networks:
+  server-network:
+    driver: bridge
+services:
+  app:
+    image: jportegame/frontend:latest
+    build: ./spa/
+    ports:
+      - 8080:80
+    networks:
+      - server-network
+  server:
+    image: jportegame/backend:latest
+    build: ./server/
+    ports:
+      - 4000:4000
+    networks:
+      - server-network
